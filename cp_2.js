@@ -33,3 +33,26 @@ async function fetchProductsAsync() {
         handleError(error);
     }
 }
+
+function displayProducts(products) {
+    const container = document.getElementById('product_container');
+    
+        products.slice(0,5).forEach(function (product) {
+            const {name,price,image} = product.fields;
+            const card = document.createElement('div');
+            card.className = "product_card";
+
+            card.innerHTML = `
+                <img src="${image[0].url}" alt="${name}">
+                <h2>${name}</h2>
+                <p>$${(price / 100).toFixed(2)}</p>
+            `;
+
+            container.appendChild(card);
+        });
+}
+
+// Calling both functions to fetch the products and display them on the page.
+
+fetchProductsThen();
+fetchProductsAsync();
