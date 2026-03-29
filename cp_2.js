@@ -15,3 +15,21 @@ function fetchProductsThen() {
         });
 }
 
+
+// Reusable error function to handle any errors that may occur during the fetch operation.
+
+function handleError(error) {
+    console.log('An error occurred: ${error.message}');
+}
+
+// Fetch products using async/await, pass data to displayProducts, handle errors with handleError. Converted prices from cents to dollars and formatted it to two decimal places.
+
+async function fetchProductsAsync() {
+    try {
+        const response = await fetch("https://www.course-api.com/javascript-store-products");
+        const data = await response.json();
+        displayProducts(data);
+    } catch (error) {
+        handleError(error);
+    }
+}
